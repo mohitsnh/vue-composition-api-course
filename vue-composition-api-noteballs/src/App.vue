@@ -1,10 +1,10 @@
 <template>
-  <div>
-  <router-link to="/">Notes</router-link> | <router-link to="/stats">Stats</router-link> 
-</div>
-<div>
+  <router-link class="button" to="/">Notes</router-link> | <router-link class="button" to="/stats">Stats</router-link> 
+
   <router-view></router-view>
-</div>
-  
 </template>
+
+<style>
+@import 'bulma\css\bulma.min.css'
+</style>
 

@@ -8,7 +8,6 @@ const router = createRouter({
             path: '/',
             name: 'notes',
             component: ViewNotes
-
         },
         {
             path: '/stats',
