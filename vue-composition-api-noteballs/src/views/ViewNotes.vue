@@ -5,34 +5,53 @@
       <div class="field">
         <div class="control">
           <textarea
+          v-model = "notesValue"
             class="textarea"
             placeholder="Add a new note"
+            ref="notesRef"
           />
         </div>
       </div>
 
       <div class="field is-grouped is-grouped-right">
         <div class="control">
-          <button class="button is-link has-background-success">
+          <button @click="addNote" class="button is-link has-background-success" :disabled="!notesValue">
             Add New Note
           </button>
         </div>
       </div>
     </div>
+    <Note v-for="note in notes"
+      :key="note.id"
+      :note="note"/>
 
-    <div
-      v-for="i in 3"
-      class="card mb-4"
-    >
-      <div class="card-content">
-        <div class="content">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quidem ipsa commodi sint ut ullam culpa nulla molestiae sunt quia qui maxime, enim quasi officiis aperiam fugit, corrupti omnis, eaque animi.
-        </div>
-      </div>
-      <footer class="card-footer">
-        <a href="#" class="card-footer-item">Edit</a>
-        <a href="#" class="card-footer-item">Delete</a>
-      </footer>
-    </div>
   </div>
 </template>
+<script setup>
+//imports
+import { ref } from 'vue';
+import Note from '@/components/Notes/Note.vue';
+// ref variables
+const notesRef = ref(null)
+const notesValue = ref('')
+const notes = ref([
+  {
+    id: '1',
+    content: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quidem ipsa commodi sint ut ullam culpa nulla molestiae sunt quia qui maxime, enim quasi officiis aperiam fugit, corrupti omnis, eaque animi."
+  },
+  {
+    id:  '2',
+    content: "This is a shorter note!"
+  }
+])
+const addNote = () => {
+  let dateNow = new Date().getTime, id = dateNow.value
+  let note = {
+    id,
+    content: notesValue.value
+  }
+  notes.value.unshift(note)
+  notesValue.value = ''
+  notesRef.value.focus()
+}
+</script>
