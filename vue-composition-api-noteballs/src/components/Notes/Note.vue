@@ -19,7 +19,6 @@
 
 <script setup>
 import { computed } from 'vue';
-import { defineEmits } from 'vue';
 
 const emit = defineEmits(['deleteClick'])
 const props = defineProps({
