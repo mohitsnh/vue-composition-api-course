@@ -11,16 +11,18 @@
         </div>
       </div>
       <footer class="card-footer">
-        <a href="#" class="card-footer-item">Edit</a>
-        <a  @click.prevent="handleDeleteClicked" href="#" class="card-footer-item">Delete</a>
+        <RouterLink :to="`/editNote/${note.id}`" class="card-footer-item">Edit</RouterLink>
+        <a  @click.prevent="storeNotes.deleteNote(note.id) " href="#" class="card-footer-item">Delete</a>
       </footer>
     </div>
 </template>
 
 <script setup>
 import { computed } from 'vue';
+import { useStoreNotes} from '@/stores/storeNotes';
+//Pinia store variable
+const storeNotes = useStoreNotes()
 
-const emit = defineEmits(['deleteClick'])
 const props = defineProps({
     note: {
         type: Object,
@@ -34,7 +36,4 @@ const characterLength = computed( ()=>{
 }
 )
 
-const handleDeleteClicked = () => {
-  emit("deleteClick", props.note.id)
-} 
 </script>
