@@ -26,6 +26,6 @@ noteContent.value = storeNotes.getNoteContent(route.params.id)
 const handleSaveClick = () =>
 {
   storeNotes.updateNotes(route.params.id,noteContent.value)
-  router.back()
+  router.push('/')
 }
 </script>
