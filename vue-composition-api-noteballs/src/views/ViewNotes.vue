@@ -1,6 +1,6 @@
 <template>
   <div class="notes">
-    <AddEditNote v-model="notesValue" ref="addEditNoteRef">
+    <AddEditNote v-model="notesValue" ref="addEditNoteRef" placeholder="Add a new note">
       <template #buttons>
         <button @click="addNote" class="button is-link has-background-success" :disabled="!notesValue">
             Add New Note

@@ -1,11 +1,13 @@
 <template>
-    <div class="card has-background-success-dark p-4 mb-5">
+    <div class="card p-4 mb-5"
+    :class="`has-background-${bgColor}-dark`">
       <div class="field">
         <div class="control">
+        <label v-if="label" class="label has-text-white">{{ label }}</label>
           <textarea
             class="textarea"
             v-model = "modelValue"
-            placeholder="Add a new note"
+            :placeholder="placeholder"
             ref="textareaRef"
             @input="$emit('update:modelValue',modelValue)"
           />
@@ -20,12 +22,24 @@
     </div>
 </template>
 
-<script setup>
+<script setup>  
 import {ref} from 'vue';
 const props = defineProps({
     modelValue: {
         type: String,
         required: true
+    },
+    bgColor: {
+      type: String,
+      required: false,
+      default: "success"
+    },
+    placeholder: {
+      type: String,
+      default: "Type something..."
+    },
+    label: {
+      type: String
     }
 })
 const emit = defineEmits(['update:modelValue'])
