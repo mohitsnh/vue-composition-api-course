@@ -6,6 +6,7 @@
         <label v-if="label" class="label has-text-white">{{ label }}</label>
           <textarea
             class="textarea"
+            v-auto-focus
             v-model = "modelValue"
             :placeholder="placeholder"
             ref="textareaRef"
@@ -24,6 +25,7 @@
 
 <script setup>  
 import {ref} from 'vue';
+import { vAutoFocus } from '@/directives/vAutoFocus.js'
 const props = defineProps({
     modelValue: {
         type: String,
@@ -53,4 +55,6 @@ const focusTextarea = () => {
 defineExpose({
     focusTextarea
 })
+
+
 </script>
