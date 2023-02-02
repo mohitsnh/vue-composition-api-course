@@ -71,7 +71,7 @@ const showMobileNav = ref(false)
 //Clcik outside to use
 const  navBarMenuRef = ref(null)
 const navBarBurgerRef = ref(null)
-onClickOutside(navBarMenuRef, (event) => {
+onClickOutside(navBarMenuRef, () => {
   showMobileNav.value = false
 },{
   ignore: [navBarBurgerRef]

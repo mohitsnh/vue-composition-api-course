@@ -12,16 +12,19 @@
       </div>
       <footer class="card-footer">
         <RouterLink :to="`/editNote/${note.id}`" class="card-footer-item">Edit</RouterLink>
-        <a  @click.prevent="storeNotes.deleteNote(note.id) " href="#" class="card-footer-item">Delete</a>
+        <a  @click.prevent="modal.deleteModal=!modal.deleteModal" href="#" class="card-footer-item">Delete</a>
       </footer>
+      <ModalDeleteNote v-if="modal.deleteModal" v-model="modal.deleteModal" :note-id="note.id"></ModalDeleteNote>
     </div>
 </template>
 
 <script setup>
-import { computed } from 'vue';
-import { useStoreNotes} from '@/stores/storeNotes';
+
+import { computed, reactive } from 'vue';
+
+import ModalDeleteNote from './ModalDeleteNote.vue';
 //Pinia store variable
-const storeNotes = useStoreNotes()
+
 
 const props = defineProps({
     note: {
@@ -35,5 +38,8 @@ const characterLength = computed( ()=>{
   return `${length} ${description}`
 }
 )
-
+//storeNotes.deleteNote(note.id) use it with click.prevent for delete button
+const modal= reactive({
+  deleteModal: false
+})
 </script>
