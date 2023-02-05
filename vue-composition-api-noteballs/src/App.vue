@@ -10,8 +10,14 @@
 /*
   imports
 */
-
+  import { onMounted } from 'vue';
+  import { useStoreNotes} from '@/stores/storeNotes';
   import NavBar from '@/components/Layout/NavBar.vue'
+  const storeNotes = useStoreNotes()
+
+  onMounted(() => {
+    storeNotes.getNotes()
+  })
 </script>
 
 <style>

@@ -6,8 +6,9 @@
         <div class="content">
           {{ note.content }}
         </div>
-        <div class="has-text-right has-text-grey-light mt-2">
-        <small>{{ characterLength }}</small>
+        <div class="columns is-mobile has-text-grey-light mt-2">
+        <small class="column">{{ dateFormatted.value }}</small>
+        <small class="column has-text-right">{{ characterLength }}</small>
         </div>
       </div>
       <footer class="card-footer">
@@ -21,8 +22,9 @@
 <script setup>
 
 import { computed, reactive } from 'vue';
-
 import ModalDeleteNote from './ModalDeleteNote.vue';
+import { useDateFormat } from '@vueuse/core'
+
 //Pinia store variable
 
 
@@ -42,4 +44,11 @@ const characterLength = computed( ()=>{
 const modal= reactive({
   deleteModal: false
 })
+
+//date formatted
+const dateFormatted = computed(() => {
+  let date = new Date(parseInt(props.note.date))
+  return useDateFormat(date, 'YYYY-MM-DD HH:mm')
+})
+
 </script>
