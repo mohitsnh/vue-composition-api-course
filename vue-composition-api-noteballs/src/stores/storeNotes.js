@@ -45,6 +45,8 @@ export const useStoreNotes = defineStore('storeNotes', {
           this.showProgressBar = false
        
         
+      }, error => {
+        console.log("Error message:",error.message)
       })         
     },
     clearNotes(){
