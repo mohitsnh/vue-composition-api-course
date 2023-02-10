@@ -7,10 +7,10 @@
           <textarea
             class="textarea"
             v-auto-focus
-            v-model = "modelValue"
+            :value="modelValue"
             :placeholder="placeholder"
             ref="textareaRef"
-            @input="$emit('update:modelValue',modelValue)"
+            @input="$emit('update:modelValue',$event.target.value)"
           />
         </div>
       </div>
